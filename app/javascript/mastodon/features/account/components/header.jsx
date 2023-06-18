@@ -39,6 +39,7 @@ const messages = defineMessages({
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
+  forcePullStatuses: {id: 'account.force_pull_statuses', defaultMessage: 'Force Pull Statuses'},
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
@@ -98,6 +99,7 @@ class Header extends ImmutablePureComponent {
     onNotifyToggle: PropTypes.func.isRequired,
     onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
+    onForcePullStatuses: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
     onUnblockDomain: PropTypes.func.isRequired,
     onEndorseToggle: PropTypes.func.isRequired,
@@ -346,6 +348,7 @@ class Header extends ImmutablePureComponent {
 
     if (signedIn && isRemote) {
       menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.forcePullStatuses), action: this.props.onForcePullStatuses });
 
       if (account.getIn(['relationship', 'domain_blocking'])) {
         menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain: remoteDomain }), action: this.props.onUnblockDomain });

@@ -139,6 +139,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       dispatch(initMuteModal(account));
     }
   },
+  
+  onForcePullStatuses (account) {
+    dispatch(forcePullStatuses(account.get('id')));
+  },
 
   onBlockDomain (domain) {
     dispatch(openModal({

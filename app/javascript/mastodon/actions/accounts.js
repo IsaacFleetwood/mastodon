@@ -360,6 +360,18 @@ export function unmuteAccountFail(error) {
   };
 }
 
+export function forcePullStatuses(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchFollowersRequest(id));
+
+    api(getState).get(`/api/v1/accounts/${id}/forcepull`).then(response => {
+
+    }).catch(error => {
+
+    });
+  };
+}
+
 
 export function fetchFollowers(id) {
   return (dispatch, getState) => {
